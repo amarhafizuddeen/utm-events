@@ -8,19 +8,15 @@ $(document).ready(function() {
 		$divRow.addClass('row');
 
 		$.each(data, function(index, val) {
-			if ((index) % 3 == 0) {
-				$divRow = $('<div />').appendTo($div);
-				$divRow.addClass('row');
-			}
-
 			var $divEvent = $('<div />').appendTo($divRow);
-			$divEvent.addClass('event');
+			$divEvent.addClass('col-md-4 events');
 
-			var $p = $('<p />').appendTo($divEvent);
+			var $p = $('<h4 />').appendTo($divEvent);
 			$p.html(val.title);
 
 			$p = $('<img />').appendTo($divEvent);
 			$p.attr('src', val.image);
+			$p.addClass('img');
 		});
 	});
 

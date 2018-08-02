@@ -1,4 +1,9 @@
-.event img {
+.events {
+	background: #FAFAFA;
+	border: 1px solid #F0F0F0;
+}
+
+.img {
 	width: 300px;
 	height: 300px;
 }
