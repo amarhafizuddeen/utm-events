@@ -1,9 +1,15 @@
+body {
+	padding-top: 120px;
+}
+
 .events {
-	background: #FAFAFA;
 	border: 1px solid #F0F0F0;
+	text-align: center;
 }
 
 .img {
 	width: 300px;
 	height: 300px;
+	display: inline-block;
+	vertical-align: middle;
 }

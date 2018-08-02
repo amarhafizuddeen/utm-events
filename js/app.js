@@ -1,13 +1,25 @@
 $(document).ready(function() {
-	var $div = $('<div />').appendTo('body');
-	$div.addClass('container');
+	var $divContainer = $('<div />').appendTo('body');
+	$divContainer.addClass('container');
+
+	var $divRow = $('<div />').appendTo($divContainer);
+	$divRow.addClass('row');
+
+	var $divCol = $('<div />').appendTo($divRow);
+	$divCol.addClass('col-md-12');
 
 	$.get('http://events.utm.my/json_event_future', function(data) {
 		/*optional stuff to do after success */
-		var $divRow = $('<div />').appendTo($div);
+		$divRow = $('<div />').appendTo($divCol);
 		$divRow.addClass('row');
 
 		$.each(data, function(index, val) {
+
+			if (index >= 2 && index % 3 === 0) {				
+				$divRow = $('<div />').appendTo($divCol);
+				$divRow.addClass('row');
+			}
+
 			var $divEvent = $('<div />').appendTo($divRow);
 			$divEvent.addClass('col-md-4 events');
 
