@@ -1,35 +1,57 @@
 $(document).ready(function() {
-	var $divContainer = $('<div />').appendTo('body');
-	$divContainer.addClass('container');
+	var $div = $('<div />').appendTo('body');
 
-	var $divRow = $('<div />').appendTo($divContainer);
-	$divRow.addClass('row');
+	$.get('http://events.utm.my/json_event_future', function(events) {
+		function prettyDate(val) {
 
-	var $divCol = $('<div />').appendTo($divRow);
-	$divCol.addClass('col-md-12');
+		    var month_names =["Jan","Feb","Mar",
+		                      "Apr","May","Jun",
+		                      "Jul","Aug","Sep",
+		                      "Oct","Nov","Dec"];
+		    
+		    var date = new Date(val); 
 
-	$.get('http://events.utm.my/json_event_future', function(data) {
-		/*optional stuff to do after success */
-		$divRow = $('<div />').appendTo($divCol);
-		$divRow.addClass('row');
+		    var day = date.getDate();
+		    var month_index = date.getMonth();
+		    var year = date.getFullYear();
+		    
+		    return "" + day + " " + month_names[month_index] + " " + year;
+		}
 
-		$.each(data, function(index, val) {
-
-			if (index >= 2 && index % 3 === 0) {				
-				$divRow = $('<div />').appendTo($divCol);
-				$divRow.addClass('row');
+		function eventDate(start, end) {
+			if (start == end) {
+				return prettyDate(start);
+			} else {
+				return prettyDate(start) + " - " + prettyDate(end);
 			}
+		}
 
-			var $divEvent = $('<div />').appendTo($divRow);
-			$divEvent.addClass('col-md-4 events');
+		function eventTime(start, end) {
+			if (start == end) {
+				return start;
+			} else {
+				return start + " - " + end;
+			}
+		}
 
-			var $p = $('<h4 />').appendTo($divEvent);
-			$p.html(val.title);
+		function eventTemplate(event) {
+			var image = event.image.replace('-150x150','');
+			return `
+				<div class="event">
+					<img class="event-photo" src="${image}">
+					<h2 class="event-name">${event.title}</h2>
+					<p><strong>Date:</strong> ${eventDate(event.start_date, event.end_date)}</p>
+					<p><strong>Time:</strong> ${eventTime(event.start_time, event.end_time)}</p>
+					<p><strong>Location:</strong> ${event.location}</p>
+					<p><strong>Categories:</strong> ${event.category.join(', ')}</p>
+				</div>
+			`
+		}
 
-			$p = $('<img />').appendTo($divEvent);
-			$p.attr('src', val.image);
-			$p.addClass('img');
-		});
+		$div.html(`
+			<h1 class="app-title">Events (${events.length} results)</h1>
+			${events.map(eventTemplate).join('')}
+		`);
 	});
 
 });

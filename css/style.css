@@ -1,15 +1,67 @@
 body {
-	padding-top: 120px;
+  font-family: sans-serif;
+  background-color: #DEDEDE;
+  color: #333;
+  padding: 20px 0 28px 0;
+  margin: 0;
 }
 
-.events {
-	border: 1px solid #F0F0F0;
-	text-align: center;
+img {
+  max-width: 100%;
+  height: auto;
 }
 
-.img {
-	width: 300px;
-	height: 300px;
-	display: inline-block;
-	vertical-align: middle;
+.app-title {
+  text-align: center;
+  font-weight: normal;
+  font-size: 2.6rem;
+}
+
+.event {
+  max-width: 80vw;
+  padding: 20px;
+  margin: 30px auto;
+  background-color: #FFF;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, .1);
+  overflow: hidden;
+}
+
+.event h4 {
+  margin: 0 0 6px 0;
+}
+
+.event-photo {
+  float: left;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.event-name {
+  font-size: 2rem;
+  font-weight: normal;
+  margin: 0 0 1rem 0;
+}
+
+.species {
+  font-size: .9rem;
+  color: #888;
+  vertical-align: middle;
+}
+
+.foods-list {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  left: 17px;
+  font-size: .85rem;
+  line-height: 1.5;
+}
+
+.footer {
+  font-size: .7rem;
+  color: #888;
+  text-align: center;
+  margin: 0;
 }
