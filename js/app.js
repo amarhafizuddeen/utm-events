@@ -45,6 +45,11 @@ $(document).ready(function() {
 					<p><strong>Location:</strong> ${event.location}</p>
 					<p><strong>Categories:</strong> ${event.category.join(', ')}</p>
 				</div>
+				<div class="modal">
+					<span class="close">&times;</span>
+					<img class="modal-content" src="${image}">
+					<span class="caption">${event.title}</span>
+				</div>
 			`
 		}
 
@@ -52,6 +57,33 @@ $(document).ready(function() {
 			<h1 class="app-title">Events (${events.length} results)</h1>
 			${events.map(eventTemplate).join('')}
 		`);
+
+		$('.event-photo').on('click', function(event) {
+			event.preventDefault();
+			
+			/* Act on the event */
+			$(this).parent().next('.modal').css('display', 'block');
+		});
+
+		$('.close').on('click', function(event) {
+			event.preventDefault();
+
+			/* Act on the event */
+			$(this).parent().css('display', 'none');
+		});
+
+		$('.modal').on('click', function(event) {
+			/* Act on the event */
+			$(this).css('display', 'none');
+		});		
+
+		$('.modal-content').on('click', function(event) {			
+    		event.stopPropagation();
+		});
+
+		$('.caption').on('click', function(event) {			
+    		event.stopPropagation();
+		});
 	});
 
 });
