@@ -10,15 +10,26 @@ h1 {
 	margin: 0;
 }
 
-.container {
-	background: #F0F0F0;
-	margin: auto;
-}
-
 /* Style the tab */
 .tab {
+	position: fixed;
+	top: 0;
+	width: 100%;
     overflow: hidden;
     background-color: #ccc;
+}
+
+.tab .header-title {
+	float: left;
+    cursor: pointer;
+	padding: 15px 16px;
+	font-weight: bold;
+	color: white;
+	background: maroon;
+}
+
+.tab + .container {
+	padding-top: 60px;
 }
 
 /* Style the buttons inside the tab */
@@ -49,6 +60,11 @@ h1 {
     padding: 6px 12px;
     border: 1px solid #ccc;
     border-top: none;
+}
+
+.container {
+	background: #F0F0F0;
+	margin: 48px 0 0 0;
 }
 
 .app-title {

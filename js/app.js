@@ -1,7 +1,10 @@
 $(document).ready(function() {
-	const futureUrl = "http://events.utm.my/json_event_future";
-	const todayUrl = "http://events.utm.my/json_event_today";
-	const pastUrl = "http://events.utm.my/json_event_past";
+	const futureUrl = "http://amar-phant0m.000webhostapp.com/UTMEvents/get_events_future.php?user_id=0";
+	const todayUrl = "http://amar-phant0m.000webhostapp.com/UTMEvents/get_events_today.php?user_id=0";
+	const pastUrl = "http://amar-phant0m.000webhostapp.com/UTMEvents/get_events_past.php?user_id=0";
+	// const futureUrl = "http://events.utm.my/json_event_future";
+	// const todayUrl = "http://events.utm.my/json_event_today";
+	// const pastUrl = "http://events.utm.my/json_event_past";
 
 	var $div = $('<div />').appendTo('body');
 	$div.addClass('container');
@@ -44,17 +47,17 @@ $(document).ready(function() {
 		var image = event.image.replace('-150x150','');
 		return `
 		<div class="event">
-		<img class="event-photo" src="${image}">
-		<h2 class="event-name">${event.title}</h2>
-		<p><strong>Date:</strong> ${eventDate(event.start_date, event.end_date)}</p>
-		<p><strong>Time:</strong> ${eventTime(event.start_time, event.end_time)}</p>
-		<p><strong>Location:</strong> ${event.location}</p>
-		<p><strong>Categories:</strong> ${event.category.join(', ')}</p>
+			<img class="event-photo" src="${image}">
+			<h2 class="event-name">${event.title}</h2>
+			<p><strong>Date:</strong> ${eventDate(event.start_date, event.end_date)}</p>
+			<p><strong>Time:</strong> ${eventTime(event.start_time, event.end_time)}</p>
+			<p><strong>Location:</strong> ${event.location}</p>
+			<p><strong>Categories:</strong> ${event.category.join(', ')}</p>
 		</div>
 		<div class="modal">
-		<span class="close">&times;</span>
-		<img class="modal-content" src="${image}">
-		<span class="caption">${event.title}</span>
+			<span class="close">&times;</span>
+			<img class="modal-content" src="${image}">
+			<span class="caption">${event.title}</span>
 		</div>
 		`
 	}
@@ -94,8 +97,13 @@ $(document).ready(function() {
 		$(btn).addClass('active');
 	}
 
+	function scrollToTop() {
+		$('html, body').animate({ scrollTop: 0 }, 'slow');
+	}
+
 	function getContents(url, category, el = null) {
 		$('.container').fadeToggle('fast');
+		scrollToTop();
 
 		$.get(url, function(events) {
 			$div.html(`
