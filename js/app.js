@@ -121,6 +121,6 @@ $(document).ready(function() {
 		getContents(pastUrl, "Past", this);
 	});
 
-	getContents(futureUrl, "Future");
+	getContents(futureUrl, "Today");
 
 });
